@@ -21,7 +21,7 @@ import tkinter as tk
 
 # 게임 관련 클래스(가져오기)
 
-from classFolder.Player_place import Player_place
+from classFolder.Object_place import Object_place
 
 game = tk.Tk()
 
@@ -34,34 +34,32 @@ player = tk.Label(game, text="😀",font=1000)
 
 
 # 플레이어의 x, y 좌표 설정
-Player_place.x = 0
-Player_place.y = 700
+player_place = Object_place(500,700)
 
 
 
 # # 왼쪽움직이게 지정
-def move_left(event, Player_place=Player_place):
+def move_left(event, player_place=player_place):
   # # 왼쪽으로 움직일 것이기에 player_x를 감소시킨다
-  # global Player_place
+  # global Object_place
   # 10만큼 감소
-  Player_place.x -= 10
+  player_place.x -= 10
   # 동작 테스트
-  print("왼쪽이동",Player_place.x)
+  print("왼쪽이동",player_place.x)
   # 플레이어 위치 재설정
-  return player.place(x=Player_place.x, y=Player_place.y)
+  return player.place(x=player_place.x, y=player_place.y)
 
 
 # # 오른쪽움직이게 지정
-def move_right(event, Player_place=Player_place):
+def move_right(event, player_place=player_place):
   # # 오른쪽으로 움직일 것이기에 player_x를 증가시킨다
-  # global Player_place
+  # global Object_place
   # 10만큼 증가
-  Player_place.x += 10
+  player_place.x += 10
   # 동작 테스트
-  print("오른쪽 이동",Player_place.x)
+  print("오른쪽 이동",player_place.x)
   # 플레이어 위치 재설정
-  return player.place(x=Player_place.x, y=Player_place.y)
-
+  return player.place(x=player_place.x, y=player_place.y)
 
 
 
@@ -77,11 +75,15 @@ player.focus_set()
 # 똥 생성
 dung = tk.Label(game, text="💩", font=1000)
 
+# 똥의 초기 위치 지정
+dung_place = Object_place(400, 200)
 
+# 똥 위치 지정
+dung.place(x=dung_place.x, y=dung_place.y)
 
 
 # # 플레이어배치
-player.place(x=Player_place.x, y=Player_place.y)
+player.place(x=player_place.x, y=player_place.y)
 
 game.mainloop()
 
