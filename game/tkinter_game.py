@@ -77,6 +77,15 @@ dung_place = Object_place(400, 200)
 dung.place(x=dung_place.x, y=dung_place.y)
 
 
+# 다시하기 버튼
+
+re_button = tk.Button(game, text="다시하기")
+
+
+# 끝내기 버튼
+
+finish_button = tk.Button(game, text="끝내기")
+
 # 똥이 내려왔을 때(어느정도 거리값 제공), 닿으면 게임오버하는 기믹 생성
 # 닿았을 때, 게임오버와 동시에 다시 실행 및 나가기 버튼 생김
 # 다시 실행 클릭시, 처음부터 다시
@@ -84,10 +93,15 @@ dung.place(x=dung_place.x, y=dung_place.y)
 
 
 def game_over():
-  if (player_place.y <= dung_place.y + 10 and player_place.y >= dung_place.y - 10) and (
-      player_place.x <= dung_place.x+10 and player_place.x >= dung_place.x-10 
-  ):
-      print("게임 오버")
+    if (
+        player_place.y <= dung_place.y + 10 and player_place.y >= dung_place.y - 10
+    ) and (player_place.x <= dung_place.x + 10 and player_place.x >= dung_place.x - 10):
+        print("게임 오버")
+        # 다시하기 버튼 생성
+        re_button.pack()
+        # 끝내기 버튼 생성
+        finish_button.pack()  
+
 
 # 똥을 움직이게 해보자
 # 0.5초마다 똥을 아래로 10만큼 움직이게 하기
