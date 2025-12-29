@@ -18,7 +18,6 @@
 
 import tkinter as tk
 
-
 # 게임 관련 클래스(가져오기)
 
 from classFolder.Object_place import Object_place
@@ -80,6 +79,23 @@ dung_place = Object_place(400, 200)
 
 # 똥 위치 지정
 dung.place(x=dung_place.x, y=dung_place.y)
+
+
+# 똥을 움직이게 해보자
+# 0.5초마다 똥을 아래로 10만큼 움직이게 하기
+
+def dung_down():
+  # 전역변수 dung_place를 가져옴
+  global dung_place
+  dung_place.y += 10  
+  dung.place(x=dung_place.x, y=dung_place.y)
+  # after 함수를 사용하여 0.5(50ms)초마다 재귀 동작을 하도록 함
+  game.after(50, dung_down)
+
+
+# 바로 똥 내려오게 실행
+
+dung_down()
 
 
 # # 플레이어배치
