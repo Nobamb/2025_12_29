@@ -40,7 +40,7 @@ Player_place.y = 700
 
 
 # # 왼쪽움직이게 지정
-def move_left(event , Player_place=Player_place):
+def move_left(event, Player_place=Player_place):
   # # 왼쪽으로 움직일 것이기에 player_x를 감소시킨다
   # global Player_place
   # 10만큼 감소
@@ -71,6 +71,11 @@ player.bind("<Left>",move_left)
 player.bind("<Right>",move_right)
 # 포커스 설정(키 입력을 받기 위해서 필요)
 player.focus_set()
+
+
+# 똥내려오게 하기
+# 똥 생성
+dung = tk.Label(game, text="💩", font=1000)
 
 
 
