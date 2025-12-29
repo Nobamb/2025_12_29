@@ -14,8 +14,6 @@
 # 10. 게임 기록 저장
 
 
-
-
 import tkinter as tk
 
 # 게임 관련 클래스(가져오기)
@@ -29,43 +27,41 @@ game.title("똥피하기 게임")
 game.geometry("1000x800")
 
 # 요소를 움직이게 해보기
-player = tk.Label(game, text="😀",font=1000)
+player = tk.Label(game, text="😀", font=1000)
 
 
 # 플레이어의 x, y 좌표 설정
-player_place = Object_place(500,700)
-
+player_place = Object_place(500, 700)
 
 
 # # 왼쪽움직이게 지정
 def move_left(event, player_place=player_place):
-  # # 왼쪽으로 움직일 것이기에 player_x를 감소시킨다
-  # global Object_place
-  # 10만큼 감소
-  player_place.x -= 10
-  # 동작 테스트
-  print("왼쪽이동",player_place.x)
-  # 플레이어 위치 재설정
-  return player.place(x=player_place.x, y=player_place.y)
+    # # 왼쪽으로 움직일 것이기에 player_x를 감소시킨다
+    # global Object_place
+    # 10만큼 감소
+    player_place.x -= 10
+    # 동작 테스트
+    print("왼쪽이동", player_place.x)
+    # 플레이어 위치 재설정
+    return player.place(x=player_place.x, y=player_place.y)
 
 
 # # 오른쪽움직이게 지정
 def move_right(event, player_place=player_place):
-  # # 오른쪽으로 움직일 것이기에 player_x를 증가시킨다
-  # global Object_place
-  # 10만큼 증가
-  player_place.x += 10
-  # 동작 테스트
-  print("오른쪽 이동",player_place.x)
-  # 플레이어 위치 재설정
-  return player.place(x=player_place.x, y=player_place.y)
-
+    # # 오른쪽으로 움직일 것이기에 player_x를 증가시킨다
+    # global Object_place
+    # 10만큼 증가
+    player_place.x += 10
+    # 동작 테스트
+    print("오른쪽 이동", player_place.x)
+    # 플레이어 위치 재설정
+    return player.place(x=player_place.x, y=player_place.y)
 
 
 # 왼쪽 키를 누르면 왼쪽으로 이동
-player.bind("<Left>",move_left)
+player.bind("<Left>", move_left)
 # 오른쪽 키를 누르면 오른쪽으로 이동
-player.bind("<Right>",move_right)
+player.bind("<Right>", move_right)
 # 포커스 설정(키 입력을 받기 위해서 필요)
 player.focus_set()
 
@@ -81,16 +77,30 @@ dung_place = Object_place(400, 200)
 dung.place(x=dung_place.x, y=dung_place.y)
 
 
+# 똥이 내려왔을 때(어느정도 거리값 제공), 닿으면 게임오버하는 기믹 생성
+# 닿았을 때, 게임오버와 동시에 다시 실행 및 나가기 버튼 생김
+# 다시 실행 클릭시, 처음부터 다시
+# 나가기 버튼 클릭시, 바로 끝냄
+
+
+def game_over():
+  if player_place.y - 20 == dung_place.y and (
+      player_place.x == dung_place.x - 10 or player_place.x == dung_place.x + 10
+  ):
+      print("게임 오버")
+
 # 똥을 움직이게 해보자
 # 0.5초마다 똥을 아래로 10만큼 움직이게 하기
 
+
 def dung_down():
-  # 전역변수 dung_place를 가져옴
-  global dung_place
-  dung_place.y += 10  
-  dung.place(x=dung_place.x, y=dung_place.y)
-  # after 함수를 사용하여 0.5(50ms)초마다 재귀 동작을 하도록 함
-  game.after(50, dung_down)
+    # 전역변수 dung_place를 가져옴
+    global dung_place
+    dung_place.y += 10
+    dung.place(x=dung_place.x, y=dung_place.y)
+    # after 함수를 사용하여 0.5(50ms)초마다 재귀 동작을 하도록 함
+    game.after(50, dung_down)
+    game_over()
 
 
 # 바로 똥 내려오게 실행
@@ -102,17 +112,4 @@ dung_down()
 player.place(x=player_place.x, y=player_place.y)
 
 
-# 똥이 내려왔을 때, 닿으면 게임오버하는 기믹 생성
-# 닿았을 때, 게임오버와 동시에 다시 실행 및 나가기 버튼 생김
-# 다시 실행 클릭시, 처음부터 다시
-# 나가기 버튼 클릭시, 바로 끝냄
-
-def game_over():
-  if(player_place.y == dung_place.y and (player_place.x == dung_place.x - 10 or player_place.x == dung_place.x + 10)):
-    print("게임 오버")
-
-
-
 game.mainloop()
-
-
