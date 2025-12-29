@@ -23,13 +23,6 @@ import tkinter as tk
 
 from classFolder.Player_place import Player_place
 
-# 왼쪽으로 움직이게 하는 함수
-
-from func.move_left import move_left
-
-# 오른쪽으로 움직이게 하는 함수
-
-
 game = tk.Tk()
 
 game.title("똥피하기 게임")
@@ -59,7 +52,7 @@ def move_left(event , Player_place=Player_place):
 
 
 # # 오른쪽움직이게 지정
-def move_right(event, player_place=Player_place):
+def move_right(event, Player_place=Player_place):
   # # 오른쪽으로 움직일 것이기에 player_x를 증가시킨다
   # global Player_place
   # 10만큼 증가
