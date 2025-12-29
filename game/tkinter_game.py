@@ -101,6 +101,18 @@ dung_down()
 # # 플레이어배치
 player.place(x=player_place.x, y=player_place.y)
 
+
+# 똥이 내려왔을 때, 닿으면 게임오버하는 기믹 생성
+# 닿았을 때, 게임오버와 동시에 다시 실행 및 나가기 버튼 생김
+# 다시 실행 클릭시, 처음부터 다시
+# 나가기 버튼 클릭시, 바로 끝냄
+
+def game_over():
+  if(player_place.y == dung_place.y and (player_place.x == dung_place.x - 10 or player_place.x == dung_place.x + 10)):
+    print("게임 오버")
+
+
+
 game.mainloop()
 
 
