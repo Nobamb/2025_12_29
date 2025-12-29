@@ -84,8 +84,8 @@ dung.place(x=dung_place.x, y=dung_place.y)
 
 
 def game_over():
-  if player_place.y - 20 == dung_place.y and (
-      player_place.x == dung_place.x - 10 or player_place.x == dung_place.x + 10
+  if (player_place.y <= dung_place.y + 10 and player_place.y >= dung_place.y - 10) and (
+      player_place.x <= dung_place.x+10 and player_place.x >= dung_place.x-10 
   ):
       print("게임 오버")
 
