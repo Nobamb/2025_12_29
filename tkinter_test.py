@@ -10,4 +10,11 @@ print(root)
 root.title("테스트 창")
 root.geometry("400x300")
 
+
+# 임의의 라벨 생성
+label_test = tk.Label(root, text="테스트")
+label_test.pack()
+
+
+
 root.mainloop()
