@@ -45,7 +45,7 @@ game = Game(False, False, "똥피하기 게임","1000x800")
 # 요소 ========================================================================
 
 # 요소를 움직이게 해보기
-player = tk.Label(game.game, text="😀", font=1000)
+player = tk.Label(game, text="😀", font=1000)
 
 
 # 플레이어의 x, y 좌표 설정
@@ -59,7 +59,7 @@ player.place(x=player_place.x, y=player_place.y)
 
 # 똥내려오게 하기
 # 똥 생성
-dung = tk.Label(game.game, text="💩", font=1000)
+dung = tk.Label(game, text="💩", font=1000)
 
 
 
@@ -73,7 +73,7 @@ dung.place(x=dung_place.x, y=dung_place.y)
 
 
 # 똥들 대량생산
-game.game.after(10, dung)
+game.after(10, dung)
 
 
 
@@ -172,7 +172,7 @@ def dung_down():
     # 만약에 dung_bool이 false면?(즉, 아직 게임오버가 안된 상황이면?)
     if not dung_bool:
         # after 함수를 사용하여 0.5(50ms)초마다 재귀 동작을 하도록 함
-        game.game.after(50, dung_down)
+        game.after(50, dung_down)
         game_over()
 
 
@@ -189,4 +189,4 @@ def dung_down():
 
 dung_down()
 # 게임 실행
-game.game.mainloop()
+game.mainloop()
