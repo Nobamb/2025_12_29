@@ -26,12 +26,35 @@ game.title("똥피하기 게임")
 
 game.geometry("1000x800")
 
+
+# 요소 ========================================================================
+
 # 요소를 움직이게 해보기
 player = tk.Label(game, text="😀", font=1000)
 
 
 # 플레이어의 x, y 좌표 설정
 player_place = Object_place(500, 700)
+
+
+# # 플레이어배치
+player.place(x=player_place.x, y=player_place.y)
+
+# 똥내려오게 하기
+# 똥 생성
+dung = tk.Label(game, text="💩", font=1000)
+
+# 똥의 초기 위치 지정
+dung_place = Object_place(400, 200)
+
+# 똥 위치 지정
+dung.place(x=dung_place.x, y=dung_place.y)
+
+
+
+# 움직임 관련=====================================================
+
+
 
 
 # # 왼쪽움직이게 지정
@@ -64,17 +87,6 @@ player.bind("<Left>", move_left)
 player.bind("<Right>", move_right)
 # 포커스 설정(키 입력을 받기 위해서 필요)
 player.focus_set()
-
-
-# 똥내려오게 하기
-# 똥 생성
-dung = tk.Label(game, text="💩", font=1000)
-
-# 똥의 초기 위치 지정
-dung_place = Object_place(400, 200)
-
-# 똥 위치 지정
-dung.place(x=dung_place.x, y=dung_place.y)
 
 
 # 다시하기 버튼
@@ -122,8 +134,11 @@ def dung_down():
 dung_down()
 
 
-# # 플레이어배치
-player.place(x=player_place.x, y=player_place.y)
 
+
+
+
+
+# 게임 시작 ==========================================================================
 
 game.mainloop()
