@@ -19,7 +19,7 @@ import tkinter as tk
 # 게임 관련 클래스(가져오기)
 
 from classFolder.Object_place import Object_place
-from classFolder.Player import Player
+from classFolder.Object import Object
 # 게임세팅 가져오기
 from game_setting import game_setting
 
@@ -42,7 +42,7 @@ from game_setting import game_setting
 # 요소 ========================================================================
 
 
-player = Player(game_setting,"😀",1000,500,700)
+player = Object(game_setting,"😀",1000,500,700)
 
 
 # # 요소를 움직이게 해보기
@@ -50,11 +50,11 @@ player = Player(game_setting,"😀",1000,500,700)
 
 
 # # 플레이어의 x, y 좌표 설정
-# player_place = Object_place(500, 700)
+# object_place = Object_place(500, 700)
 
 
 # # # 플레이어배치
-# player.place(x=player_place.x, y=player_place.y)
+# player.place(x=object_place.x, y=object_place.y)
 
 
 
@@ -64,17 +64,17 @@ player = Player(game_setting,"😀",1000,500,700)
 
 # 똥내려오게 하기
 # 똥 생성
-dung = tk.Label(game_setting, text="💩", font=1000)
+dung = Object(game_setting, "💩",1000, 400, 200)
 
 
 
 
 
-# 똥의 초기 위치 지정
-dung_place = Object_place(400, 200)
+# # 똥의 초기 위치 지정
+# dung_place = Object_place(400, 200)
 
-# 똥 위치 지정
-dung.place(x=dung_place.x, y=dung_place.y)
+# # 똥 위치 지정
+# dung.place(x=dung_place.x, y=dung_place.y)
 
 
 # 똥들 대량생산
@@ -91,27 +91,27 @@ game_setting.after(10, dung)
 
 
 # # 왼쪽움직이게 지정
-def move_left(event, player_place=player.player_place):
+def move_left(event, object_place=player.object_place):
     # # 왼쪽으로 움직일 것이기에 player_x를 감소시킨다
     # global Object_place
     # 10만큼 감소
-    player_place.x -= 10
+    object_place.x -= 10
     # 동작 테스트
-    print("왼쪽이동", player_place.x)
+    print("왼쪽이동", object_place.x)
     # 플레이어 위치 재설정
-    return player.place(x=player_place.x, y=player_place.y)
+    return player.place(x=object_place.x, y=object_place.y)
 
 
 # # 오른쪽움직이게 지정
-def move_right(event, player_place=player.player_place):
+def move_right(event, object_place=player.object_place):
     # # 오른쪽으로 움직일 것이기에 player_x를 증가시킨다
     # global Object_place
     # 10만큼 증가
-    player_place.x += 10
+    object_place.x += 10
     # 동작 테스트
-    print("오른쪽 이동", player_place.x)
+    print("오른쪽 이동", object_place.x)
     # 플레이어 위치 재설정
-    return player.place(x=player_place.x, y=player_place.y)
+    return player.place(x=object_place.x, y=object_place.y)
 
 
 # 왼쪽 키를 누르면 왼쪽으로 이동
@@ -151,8 +151,8 @@ def game_over():
     # dung_bool 가져오기
     global dung_bool
     if (
-        player.player_place.y <= dung_place.y + 20 and player.player_place.y >= dung_place.y - 20
-    ) and (player.player_place.x <= dung_place.x + 20 and player.player_place.x >= dung_place.x - 20):
+        player.object_place.y <= dung.object_place.y + 20 and player.object_place.y >= dung.object_place.y - 20
+    ) and (player.object_place.x <= dung.object_place.x + 20 and player.object_place.x >= dung.object_place.x - 20):
         print("게임 오버")
         # dung_bool true값 변경
         dung_bool = True
@@ -171,9 +171,8 @@ def dung_down():
     if dung_bool:
         return
     # 전역변수 dung_place를 가져옴
-    global dung_place
-    dung_place.y += 10
-    dung.place(x=dung_place.x, y=dung_place.y)
+    dung.object_place.y += 10
+    dung.place(x=dung.object_place.x, y=dung.object_place.y)
     # 만약에 dung_bool이 false면?(즉, 아직 게임오버가 안된 상황이면?)
     if not dung_bool:
         # after 함수를 사용하여 0.5(50ms)초마다 재귀 동작을 하도록 함
