@@ -20,7 +20,7 @@ import tkinter as tk
 
 from classFolder.Object_place import Object_place
 from classFolder.Game import Game
-
+from classFolder.Player import Player
 
 
 
@@ -44,16 +44,24 @@ game = Game(False, False, "똥피하기 게임","1000x800")
 
 # 요소 ========================================================================
 
-# 요소를 움직이게 해보기
-player = tk.Label(game, text="😀", font=1000)
+
+player = Player(game,"😀",1000,500,700)
 
 
-# 플레이어의 x, y 좌표 설정
-player_place = Object_place(500, 700)
+# # 요소를 움직이게 해보기
+# player = tk.Label(game, text="😀", font=1000)
 
 
-# # 플레이어배치
-player.place(x=player_place.x, y=player_place.y)
+# # 플레이어의 x, y 좌표 설정
+# player_place = Object_place(500, 700)
+
+
+# # # 플레이어배치
+# player.place(x=player_place.x, y=player_place.y)
+
+
+
+
 
 
 
@@ -86,7 +94,7 @@ game.after(10, dung)
 
 
 # # 왼쪽움직이게 지정
-def move_left(event, player_place=player_place):
+def move_left(event, player_place=player.player_place):
     # # 왼쪽으로 움직일 것이기에 player_x를 감소시킨다
     # global Object_place
     # 10만큼 감소
@@ -94,11 +102,11 @@ def move_left(event, player_place=player_place):
     # 동작 테스트
     print("왼쪽이동", player_place.x)
     # 플레이어 위치 재설정
-    return player.place(x=player_place.x, y=player_place.y)
+    return player.player.place(x=player_place.x, y=player_place.y)
 
 
 # # 오른쪽움직이게 지정
-def move_right(event, player_place=player_place):
+def move_right(event, player_place=player.player_place):
     # # 오른쪽으로 움직일 것이기에 player_x를 증가시킨다
     # global Object_place
     # 10만큼 증가
@@ -106,15 +114,15 @@ def move_right(event, player_place=player_place):
     # 동작 테스트
     print("오른쪽 이동", player_place.x)
     # 플레이어 위치 재설정
-    return player.place(x=player_place.x, y=player_place.y)
+    return player.player.place(x=player_place.x, y=player_place.y)
 
 
 # 왼쪽 키를 누르면 왼쪽으로 이동
-player.bind("<Left>", move_left)
+player.player.bind("<Left>", move_left)
 # 오른쪽 키를 누르면 오른쪽으로 이동
-player.bind("<Right>", move_right)
+player.player.bind("<Right>", move_right)
 # 포커스 설정(키 입력을 받기 위해서 필요)
-player.focus_set()
+player.player.focus_set()
 
 
 # 다시하기 버튼
@@ -146,8 +154,8 @@ def game_over():
     # dung_bool 가져오기
     global dung_bool
     if (
-        player_place.y <= dung_place.y + 20 and player_place.y >= dung_place.y - 20
-    ) and (player_place.x <= dung_place.x + 20 and player_place.x >= dung_place.x - 20):
+        player.player_place.y <= dung_place.y + 20 and player.player_place.y >= dung_place.y - 20
+    ) and (player.player_place.x <= dung_place.x + 20 and player.player_place.x >= dung_place.x - 20):
         print("게임 오버")
         # dung_bool true값 변경
         dung_bool = True
