@@ -20,8 +20,17 @@ import tkinter as tk
 
 from classFolder.Object_place import Object_place
 
+
+# tk가져오기(게임 시작)
 game = tk.Tk()
 
+# 사이즈조절 가능 여부 설정
+# 둘다 조절 못하게 설정
+game.resizable(False, False)
+
+
+# 제목 똥피하기 게임
+# 크기 1000(가로) 800(세로)
 game.title("똥피하기 게임")
 
 game.geometry("1000x800")
@@ -40,15 +49,28 @@ player_place = Object_place(500, 700)
 # # 플레이어배치
 player.place(x=player_place.x, y=player_place.y)
 
+
+
 # 똥내려오게 하기
 # 똥 생성
 dung = tk.Label(game, text="💩", font=1000)
+
+
+
+
 
 # 똥의 초기 위치 지정
 dung_place = Object_place(400, 200)
 
 # 똥 위치 지정
 dung.place(x=dung_place.x, y=dung_place.y)
+
+
+# 똥들 대량생산
+game.after(10, dung)
+
+
+
 
 
 
