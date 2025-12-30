@@ -19,12 +19,9 @@ import tkinter as tk
 # 게임 관련 클래스(가져오기)
 
 from classFolder.Object_place import Object_place
-from classFolder.Game import Game
 from classFolder.Player import Player
-
-
-
-game = Game(False, False, "똥피하기 게임","1000x800")
+# 게임세팅 가져오기
+from game_setting import game_setting
 
 
 # # tk가져오기(게임 시작)
@@ -45,7 +42,7 @@ game = Game(False, False, "똥피하기 게임","1000x800")
 # 요소 ========================================================================
 
 
-player = Player(game,"😀",1000,500,700)
+player = Player(game_setting,"😀",1000,500,700)
 
 
 # # 요소를 움직이게 해보기
@@ -67,7 +64,7 @@ player = Player(game,"😀",1000,500,700)
 
 # 똥내려오게 하기
 # 똥 생성
-dung = tk.Label(game, text="💩", font=1000)
+dung = tk.Label(game_setting, text="💩", font=1000)
 
 
 
@@ -81,7 +78,7 @@ dung.place(x=dung_place.x, y=dung_place.y)
 
 
 # 똥들 대량생산
-game.after(10, dung)
+game_setting.after(10, dung)
 
 
 
@@ -102,7 +99,7 @@ def move_left(event, player_place=player.player_place):
     # 동작 테스트
     print("왼쪽이동", player_place.x)
     # 플레이어 위치 재설정
-    return player.player.place(x=player_place.x, y=player_place.y)
+    return player.place(x=player_place.x, y=player_place.y)
 
 
 # # 오른쪽움직이게 지정
@@ -114,25 +111,25 @@ def move_right(event, player_place=player.player_place):
     # 동작 테스트
     print("오른쪽 이동", player_place.x)
     # 플레이어 위치 재설정
-    return player.player.place(x=player_place.x, y=player_place.y)
+    return player.place(x=player_place.x, y=player_place.y)
 
 
 # 왼쪽 키를 누르면 왼쪽으로 이동
-player.player.bind("<Left>", move_left)
+player.bind("<Left>", move_left)
 # 오른쪽 키를 누르면 오른쪽으로 이동
-player.player.bind("<Right>", move_right)
+player.bind("<Right>", move_right)
 # 포커스 설정(키 입력을 받기 위해서 필요)
-player.player.focus_set()
+player.focus_set()
 
 
 # 다시하기 버튼
 
-re_button = tk.Button(game, text="다시하기")
+re_button = tk.Button(game_setting, text="다시하기")
 
 
 # 끝내기 버튼
 # game의 destroy 함수 지정(게임 끝내기)
-finish_button = tk.Button(game, text="끝내기",command=game.destroy)
+finish_button = tk.Button(game_setting, text="끝내기",command=game_setting.destroy)
 
 
 # dung_bool
@@ -180,7 +177,7 @@ def dung_down():
     # 만약에 dung_bool이 false면?(즉, 아직 게임오버가 안된 상황이면?)
     if not dung_bool:
         # after 함수를 사용하여 0.5(50ms)초마다 재귀 동작을 하도록 함
-        game.after(50, dung_down)
+        game_setting.after(50, dung_down)
         game_over()
 
 
@@ -197,4 +194,4 @@ def dung_down():
 
 dung_down()
 # 게임 실행
-game.mainloop()
+game_setting.mainloop()
