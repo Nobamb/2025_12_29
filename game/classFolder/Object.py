@@ -12,9 +12,9 @@ class Object(tk.Label):
     # tk.Label 상속
     super().__init__(game, text=text, font=size)
     # 좌표값 설정
-    self.player_place = Object_place(place_x, place_y)
+    self.object_place = Object_place(place_x, place_y)
     # 좌표값에 맞게 위치 지정
-    self.place(x=self.player_place.x, y=self.player_place.y)
+    self.place(x=self.object_place.x, y=self.object_place.y)
 
 
 # # 요소를 움직이게 해보기
