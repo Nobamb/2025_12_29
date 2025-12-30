@@ -22,6 +22,10 @@ from classFolder.Object_place import Object_place
 from classFolder.Object import Object
 # 게임세팅 가져오기
 from game_setting import game_setting
+# 게임 관련 오브젝트 가져오기
+from player import player
+# 게임 관련 함수 가져오기
+# from func.move import move
 
 
 # # tk가져오기(게임 시작)
@@ -42,7 +46,7 @@ from game_setting import game_setting
 # 요소 ========================================================================
 
 
-player = Object(game_setting,"😀",1000,500,700)
+# player = Object(game_setting,"😀",1000,500,700)
 
 
 # # 요소를 움직이게 해보기
