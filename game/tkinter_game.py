@@ -98,6 +98,16 @@ re_button = tk.Button(game, text="다시하기")
 # game의 destroy 함수 지정(게임 끝내기)
 finish_button = tk.Button(game, text="끝내기",command=game.destroy)
 
+
+# dung_bool
+# 똥이 더이상 내려올 지에 대한 조건 값
+# 기본값은 false
+# game_over에서 일정 범위내에 들어왔을 때
+# true로 변환을 하기(똥 멈추게)
+dung_bool = False
+
+
+
 # 똥이 내려왔을 때(어느정도 거리값 제공), 닿으면 게임오버하는 기믹 생성
 # 닿았을 때, 게임오버와 동시에 다시 실행 및 나가기 버튼 생김
 # 다시 실행 클릭시, 처음부터 다시
@@ -105,10 +115,14 @@ finish_button = tk.Button(game, text="끝내기",command=game.destroy)
 
 
 def game_over():
+    # dung_bool 가져오기
+    global dung_bool
     if (
         player_place.y <= dung_place.y + 10 and player_place.y >= dung_place.y - 10
     ) and (player_place.x <= dung_place.x + 10 and player_place.x >= dung_place.x - 10):
         print("게임 오버")
+        # dung_bool true값 변경
+        dung_bool = True
         # 다시하기 버튼 생성
         re_button.pack()
         # 끝내기 버튼 생성
@@ -120,13 +134,18 @@ def game_over():
 
 
 def dung_down():
+    # gameover되면 못움직이게 return 처리
+    if dung_bool:
+        return
     # 전역변수 dung_place를 가져옴
     global dung_place
     dung_place.y += 10
     dung.place(x=dung_place.x, y=dung_place.y)
-    # after 함수를 사용하여 0.5(50ms)초마다 재귀 동작을 하도록 함
-    game.after(50, dung_down)
-    game_over()
+    # 만약에 dung_bool이 false면?(즉, 아직 게임오버가 안된 상황이면?)
+    if not dung_bool:
+        # after 함수를 사용하여 0.5(50ms)초마다 재귀 동작을 하도록 함
+        game.after(50, dung_down)
+        game_over()
 
 
 
