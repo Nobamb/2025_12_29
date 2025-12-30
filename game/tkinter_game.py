@@ -118,8 +118,8 @@ def game_over():
     # dung_bool 가져오기
     global dung_bool
     if (
-        player_place.y <= dung_place.y + 10 and player_place.y >= dung_place.y - 10
-    ) and (player_place.x <= dung_place.x + 10 and player_place.x >= dung_place.x - 10):
+        player_place.y <= dung_place.y + 20 and player_place.y >= dung_place.y - 20
+    ) and (player_place.x <= dung_place.x + 20 and player_place.x >= dung_place.x - 20):
         print("게임 오버")
         # dung_bool true값 변경
         dung_bool = True
