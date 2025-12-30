@@ -19,27 +19,33 @@ import tkinter as tk
 # 게임 관련 클래스(가져오기)
 
 from classFolder.Object_place import Object_place
+from classFolder.Game import Game
 
 
-# tk가져오기(게임 시작)
-game = tk.Tk()
-
-# 사이즈조절 가능 여부 설정
-# 둘다 조절 못하게 설정
-game.resizable(False, False)
 
 
-# 제목 똥피하기 게임
-# 크기 1000(가로) 800(세로)
-game.title("똥피하기 게임")
+game = Game(False, False, "똥피하기 게임","1000x800")
 
-game.geometry("1000x800")
+
+# # tk가져오기(게임 시작)
+# game = tk.Tk()
+
+# # 사이즈조절 가능 여부 설정
+# # 둘다 조절 못하게 설정
+# game.resizable(False, False)
+
+
+# # 제목 똥피하기 게임
+# # 크기 1000(가로) 800(세로)
+# game.title("똥피하기 게임")
+
+# game.geometry("1000x800")
 
 
 # 요소 ========================================================================
 
 # 요소를 움직이게 해보기
-player = tk.Label(game, text="😀", font=1000)
+player = tk.Label(game.game, text="😀", font=1000)
 
 
 # 플레이어의 x, y 좌표 설정
@@ -53,7 +59,7 @@ player.place(x=player_place.x, y=player_place.y)
 
 # 똥내려오게 하기
 # 똥 생성
-dung = tk.Label(game, text="💩", font=1000)
+dung = tk.Label(game.game, text="💩", font=1000)
 
 
 
@@ -67,7 +73,7 @@ dung.place(x=dung_place.x, y=dung_place.y)
 
 
 # 똥들 대량생산
-game.after(10, dung)
+game.game.after(10, dung)
 
 
 
@@ -166,7 +172,7 @@ def dung_down():
     # 만약에 dung_bool이 false면?(즉, 아직 게임오버가 안된 상황이면?)
     if not dung_bool:
         # after 함수를 사용하여 0.5(50ms)초마다 재귀 동작을 하도록 함
-        game.after(50, dung_down)
+        game.game.after(50, dung_down)
         game_over()
 
 
@@ -183,4 +189,4 @@ def dung_down():
 
 dung_down()
 # 게임 실행
-game.mainloop()
+game.game.mainloop()
