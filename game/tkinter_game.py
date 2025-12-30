@@ -95,8 +95,8 @@ re_button = tk.Button(game, text="다시하기")
 
 
 # 끝내기 버튼
-
-finish_button = tk.Button(game, text="끝내기")
+# game의 destroy 함수 지정(게임 끝내기)
+finish_button = tk.Button(game, text="끝내기",command=game.destroy)
 
 # 똥이 내려왔을 때(어느정도 거리값 제공), 닿으면 게임오버하는 기믹 생성
 # 닿았을 때, 게임오버와 동시에 다시 실행 및 나가기 버튼 생김
@@ -129,9 +129,6 @@ def dung_down():
     game_over()
 
 
-# 바로 똥 내려오게 실행
-
-dung_down()
 
 
 
@@ -141,4 +138,8 @@ dung_down()
 
 # 게임 시작 ==========================================================================
 
+# 바로 똥 내려오게 실행
+
+dung_down()
+# 게임 실행
 game.mainloop()
