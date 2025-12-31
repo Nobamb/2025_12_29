@@ -22,8 +22,10 @@ from classFolder.Object_place import Object_place
 from classFolder.Object import Object
 # 게임세팅 가져오기
 from game_setting import game_setting
-# 게임 관련 오브젝트 가져오기
-from player import player
+# 플레이어 오브젝트 가져오기
+from data.player import player
+# 똥 오브젝트 가져오기
+from data.dung import dung
 # 게임 관련 함수 가져오기
 from func.move import move
 
@@ -68,7 +70,7 @@ from func.move import move
 
 # 똥내려오게 하기
 # 똥 생성
-dung = Object(game_setting, "💩",1000, 400, 200)
+# dung = Object(game_setting, "💩",1000, 400, 200)
 
 
 
