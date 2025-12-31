@@ -28,6 +28,10 @@ from data.player import player
 from data.dung import dung
 # 게임 관련 함수 가져오기
 from func.move import move
+# 버튼 가져오기(다시하기, 끝내기)
+from game_over_button.re_button import re_button
+from game_over_button.finish_button import finish_button
+
 
 
 # # tk가져오기(게임 시작)
@@ -129,14 +133,14 @@ player.bind("<Right>", lambda event:move(event, +10))
 player.focus_set()
 
 
-# 다시하기 버튼
+# # 다시하기 버튼
 
-re_button = tk.Button(game_setting, text="다시하기")
+# re_button = tk.Button(game_setting, text="다시하기")
 
 
-# 끝내기 버튼
-# game의 destroy 함수 지정(게임 끝내기)
-finish_button = tk.Button(game_setting, text="끝내기",command=game_setting.destroy)
+# # 끝내기 버튼
+# # game의 destroy 함수 지정(게임 끝내기)
+# finish_button = tk.Button(game_setting, text="끝내기",command=game_setting.destroy)
 
 
 # dung_bool
