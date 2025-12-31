@@ -33,7 +33,8 @@ from game_over_button.re_button import re_button
 from game_over_button.finish_button import finish_button
 # 똥떨어지게
 from func.dung_down import dung_down
-
+# 플레이어 세팅
+from func.player_setting import player_setting
 
 # # tk가져오기(게임 시작)
 # game = tk.Tk()
@@ -125,13 +126,16 @@ game_setting.after(10, dung)
 #     return player.place(x=object_place.x, y=object_place.y)
 
 
-# 왼쪽 키를 누르면 왼쪽으로 이동
-# 람다함수 사용하여 event(대표 파라미터)를 던져서 event, -10을 적용
-player.bind("<Left>", lambda event:move(event, -10))
-# 오른쪽 키를 누르면 오른쪽으로 이동
-player.bind("<Right>", lambda event:move(event, +10))
-# 포커스 설정(키 입력을 받기 위해서 필요)
-player.focus_set()
+# # 왼쪽 키를 누르면 왼쪽으로 이동
+# # 람다함수 사용하여 event(대표 파라미터)를 던져서 event, -10을 적용
+# player.bind("<Left>", lambda event:move(event, -10))
+# # 오른쪽 키를 누르면 오른쪽으로 이동
+# player.bind("<Right>", lambda event:move(event, +10))
+# # 포커스 설정(키 입력을 받기 위해서 필요)
+# player.focus_set()
+
+# 플레이어 세팅
+player_setting()
 
 
 # # 다시하기 버튼
