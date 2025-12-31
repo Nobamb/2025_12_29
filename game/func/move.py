@@ -1,4 +1,5 @@
-from player import player
+# 플레이어 가져오기
+from data.player import player
 
 # # 움직이게 지정
 def move(event, value, object_place=player.object_place):
