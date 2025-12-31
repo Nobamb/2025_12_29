@@ -25,7 +25,9 @@ from game_setting import game_setting
 # 플레이어 오브젝트 가져오기
 from data.player import player
 # 똥 오브젝트 가져오기
-from data.dung import dung
+# from data.dung import dung
+# 똥 연속 생성
+from func.make_dung import make_dung
 # 게임 관련 함수 가져오기
 from func.move import move
 # 버튼 가져오기(다시하기, 끝내기)
@@ -88,9 +90,6 @@ from func.player_setting import player_setting
 # # 똥 위치 지정
 # dung.place(x=dung_place.x, y=dung_place.y)
 
-
-# 똥들 대량생산
-game_setting.after(10, dung)
 
 
 
@@ -204,6 +203,10 @@ player_setting()
 
 
 # 게임 시작 ==========================================================================
+
+# 똥 무한 만들기
+make_dung()
+
 
 # 바로 똥 내려오게 실행
 
