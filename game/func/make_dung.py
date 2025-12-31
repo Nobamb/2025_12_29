@@ -22,7 +22,7 @@ def make_dung():
     dung_list.append(new_dung)
     
     # 계속 생산하게 하기
-    game_setting.after(30, make_dung)
+    game_setting.after(50, make_dung)
     
   # 만약에 is_game_over값이 true면 
   # 생산을 중단한다.
