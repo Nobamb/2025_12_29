@@ -25,7 +25,7 @@ from game_setting import game_setting
 # 게임 관련 오브젝트 가져오기
 from player import player
 # 게임 관련 함수 가져오기
-# from func.move import move
+from func.move import move
 
 
 # # tk가져오기(게임 시작)
@@ -94,34 +94,35 @@ game_setting.after(10, dung)
 
 
 
-# # 왼쪽움직이게 지정
-def move_left(event, object_place=player.object_place):
-    # # 왼쪽으로 움직일 것이기에 player_x를 감소시킨다
-    # global Object_place
-    # 10만큼 감소
-    object_place.x -= 10
-    # 동작 테스트
-    print("왼쪽이동", object_place.x)
-    # 플레이어 위치 재설정
-    return player.place(x=object_place.x, y=object_place.y)
+# # # 왼쪽움직이게 지정
+# def move_left(event, object_place=player.object_place):
+#     # # 왼쪽으로 움직일 것이기에 player_x를 감소시킨다
+#     # global Object_place
+#     # 10만큼 감소
+#     object_place.x -= 10
+#     # 동작 테스트
+#     print("왼쪽이동", object_place.x)
+#     # 플레이어 위치 재설정
+#     return player.place(x=object_place.x, y=object_place.y)
 
 
 # # 오른쪽움직이게 지정
-def move_right(event, object_place=player.object_place):
-    # # 오른쪽으로 움직일 것이기에 player_x를 증가시킨다
-    # global Object_place
-    # 10만큼 증가
-    object_place.x += 10
-    # 동작 테스트
-    print("오른쪽 이동", object_place.x)
-    # 플레이어 위치 재설정
-    return player.place(x=object_place.x, y=object_place.y)
+# def move_right(event, object_place=player.object_place):
+#     # # 오른쪽으로 움직일 것이기에 player_x를 증가시킨다
+#     # global Object_place
+#     # 10만큼 증가
+#     object_place.x += 10
+#     # 동작 테스트
+#     print("오른쪽 이동", object_place.x)
+#     # 플레이어 위치 재설정
+#     return player.place(x=object_place.x, y=object_place.y)
 
 
 # 왼쪽 키를 누르면 왼쪽으로 이동
-player.bind("<Left>", move_left)
+# 람다함수 사용하여 event(대표 파라미터)를 던져서 event, -10을 적용
+player.bind("<Left>", lambda event:move(event, -10))
 # 오른쪽 키를 누르면 오른쪽으로 이동
-player.bind("<Right>", move_right)
+player.bind("<Right>", lambda event:move(event, +10))
 # 포커스 설정(키 입력을 받기 위해서 필요)
 player.focus_set()
 
