@@ -31,7 +31,8 @@ from func.move import move
 # 버튼 가져오기(다시하기, 끝내기)
 from game_over_button.re_button import re_button
 from game_over_button.finish_button import finish_button
-
+# 똥떨어지게
+from func.dung_down import dung_down
 
 
 # # tk가져오기(게임 시작)
@@ -143,12 +144,12 @@ player.focus_set()
 # finish_button = tk.Button(game_setting, text="끝내기",command=game_setting.destroy)
 
 
-# dung_bool
-# 똥이 더이상 내려올 지에 대한 조건 값
-# 기본값은 false
-# game_over에서 일정 범위내에 들어왔을 때
-# true로 변환을 하기(똥 멈추게)
-dung_bool = False
+# # dung_bool
+# # 똥이 더이상 내려올 지에 대한 조건 값
+# # 기본값은 false
+# # game_over에서 일정 범위내에 들어왔을 때
+# # true로 변환을 하기(똥 멈추게)
+# dung_bool = False
 
 
 
@@ -158,37 +159,37 @@ dung_bool = False
 # 나가기 버튼 클릭시, 바로 끝냄
 
 
-def game_over():
-    # dung_bool 가져오기
-    global dung_bool
-    if (
-        player.object_place.y <= dung.object_place.y + 20 and player.object_place.y >= dung.object_place.y - 20
-    ) and (player.object_place.x <= dung.object_place.x + 20 and player.object_place.x >= dung.object_place.x - 20):
-        print("게임 오버")
-        # dung_bool true값 변경
-        dung_bool = True
-        # 다시하기 버튼 생성
-        re_button.pack()
-        # 끝내기 버튼 생성
-        finish_button.pack()  
+# def game_over():
+#     # dung_bool 가져오기
+#     global dung_bool
+#     if (
+#         player.object_place.y <= dung.object_place.y + 20 and player.object_place.y >= dung.object_place.y - 20
+#     ) and (player.object_place.x <= dung.object_place.x + 20 and player.object_place.x >= dung.object_place.x - 20):
+#         print("게임 오버")
+#         # dung_bool true값 변경
+#         dung_bool = True
+#         # 다시하기 버튼 생성
+#         re_button.pack()
+#         # 끝내기 버튼 생성
+#         finish_button.pack()  
 
 
-# 똥을 움직이게 해보자
-# 0.5초마다 똥을 아래로 10만큼 움직이게 하기
+# # 똥을 움직이게 해보자
+# # 0.5초마다 똥을 아래로 10만큼 움직이게 하기
 
 
-def dung_down():
-    # gameover되면 못움직이게 return 처리
-    if dung_bool:
-        return
-    # 전역변수 dung_place를 가져옴
-    dung.object_place.y += 10
-    dung.place(x=dung.object_place.x, y=dung.object_place.y)
-    # 만약에 dung_bool이 false면?(즉, 아직 게임오버가 안된 상황이면?)
-    if not dung_bool:
-        # after 함수를 사용하여 0.5(50ms)초마다 재귀 동작을 하도록 함
-        game_setting.after(50, dung_down)
-        game_over()
+# def dung_down():
+#     # gameover되면 못움직이게 return 처리
+#     if dung_bool:
+#         return
+#     # 전역변수 dung_place를 가져옴
+#     dung.object_place.y += 10
+#     dung.place(x=dung.object_place.x, y=dung.object_place.y)
+#     # 만약에 dung_bool이 false면?(즉, 아직 게임오버가 안된 상황이면?)
+#     if not dung_bool:
+#         # after 함수를 사용하여 0.5(50ms)초마다 재귀 동작을 하도록 함
+#         game_setting.after(50, dung_down)
+#         game_over()
 
 
 
